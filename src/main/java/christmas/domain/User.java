@@ -1,4 +1,4 @@
-package domain;
+package christmas.domain;
 
 public class User {
     private final int reservationDate;
