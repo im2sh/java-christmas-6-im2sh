@@ -26,7 +26,7 @@ public class UserTest {
     @ParameterizedTest
     @NullSource
     @DisplayName("입력 날짜가 null인 경우 예외가 발생한다.")
-    public void 날짜_빈_문자열_테스트(String input) throws Exception {
+    public void 날짜_문자열_null_테스트(String input) throws Exception {
         assertThatThrownBy(() -> new User(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
