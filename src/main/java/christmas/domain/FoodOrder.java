@@ -1,5 +1,6 @@
-package domain;
+package christmas.domain;
 
+import christmas.domain.FoodCategory;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

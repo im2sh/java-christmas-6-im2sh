@@ -1,5 +1,6 @@
-package domain;
+package christmas.domain;
 
+import christmas.domain.Food;
 import java.util.Arrays;
 import java.util.List;
 
