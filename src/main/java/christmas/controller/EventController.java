@@ -18,7 +18,7 @@ public class EventController {
     private int inputReservationDate() {
         while (true) {
             try {
-                return dateInputValidator.ValidateInputDate(InputView.inputReservationDate());
+                return dateInputValidator.validateInputDate(InputView.inputReservationDate());
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
             }
