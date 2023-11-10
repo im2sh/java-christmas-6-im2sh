@@ -1,9 +1,12 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import christmas.domain.FoodOrder;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class OrderTest {
@@ -48,5 +51,12 @@ public class OrderTest {
     @DisplayName("입력한 음식의 수량이 20개가 넘을 경우 경우 예외가 발생한다.")
     public void 음식_수량_테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> new FoodOrder(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @DisplayName("입력된 주문이 null인 경우 예외가 발생한다.")
+    public void 주문_문자열_null_테스트(String input) throws Exception {
+        assertThatThrownBy(() -> new FoodOrder(input)).isInstanceOf(IllegalArgumentException.class);
     }
 }

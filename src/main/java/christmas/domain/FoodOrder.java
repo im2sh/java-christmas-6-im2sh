@@ -9,19 +9,21 @@ public class FoodOrder {
     private final Map<String, Integer> order;
 
     public FoodOrder(String order) {
+        NotNullValidate(order);
         this.order = parseOrders(order);
     }
 
-    public Map<String, Integer> parseOrders(String orders) {
+    public Map<String, Integer> parseOrders(String order) {
         Map<String, Integer> parsedOrder = new HashMap<>();
 
-        Arrays.stream(orders.split(","))
+        Arrays.stream(order.split(","))
                 .forEach(menu -> divideOrders(menu, parsedOrder));
 
         validateBeverageOnly(parsedOrder);
         validateQuantityExceeded(parsedOrder);
         return parsedOrder;
     }
+
 
     private void divideOrders(String menu, Map<String, Integer> parsedOrder) {
         String[] foods = validateMenuFormat(menu.split("-"));
@@ -92,6 +94,12 @@ public class FoodOrder {
     private void validateQuantityExceeded(Map<String, Integer> parsedOrder) {
         if (parsedOrder.values().stream().mapToInt(Integer::intValue).sum() > 20) {
             throw new IllegalArgumentException("[ERROR] 주문 수량은 최대 20개입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private void NotNullValidate(String order) {
+        if (order == null) {
+            throw new IllegalArgumentException("[ERROR] 입력 값이 null 입니다. 다시 입력해 주세요.");
         }
     }
 }
