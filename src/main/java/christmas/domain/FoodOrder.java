@@ -8,4 +8,8 @@ public class FoodOrder {
     public FoodOrder(Map<String, Integer> order) {
         this.order = order;
     }
+
+    public Map<String, Integer> getOrder() {
+        return order;
+    }
 }

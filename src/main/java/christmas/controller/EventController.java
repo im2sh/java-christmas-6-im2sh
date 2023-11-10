@@ -12,13 +12,20 @@ public class EventController {
     private final DateInputValidator dateInputValidator;
     private final OrderInputValidator orderInputValidator;
 
-    public EventController(DateInputValidator dateInputValidator, OrderInputValidator orderInputValidator){
+    public EventController(DateInputValidator dateInputValidator, OrderInputValidator orderInputValidator) {
         this.dateInputValidator = dateInputValidator;
         this.orderInputValidator = orderInputValidator;
     }
+
     public void event() {
         User user = new User(inputReservationDate());
         FoodOrder foodOrder = new FoodOrder(inputOrder());
+        showOrderBill(new OrderController(foodOrder));
+    }
+
+    public void showOrderBill(OrderController orderController) {
+        orderController.showOrderHistory();
+        ;
     }
 
     private int inputReservationDate() {
@@ -30,6 +37,7 @@ public class EventController {
             }
         }
     }
+
     private Map<String, Integer> inputOrder() {
         while (true) {
             try {
