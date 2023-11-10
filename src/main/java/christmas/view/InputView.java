@@ -9,5 +9,9 @@ public class InputView {
         System.out.println(EventMessage.INPUT_DATE.getMessage());
         return Console.readLine();
     }
+    public static String inputOrder(){
+        System.out.println(EventMessage.INPUT_ORDER.getMessage());
+        return Console.readLine();
+    }
 
 }
