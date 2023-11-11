@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Event;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
 import christmas.request.FoodOrderRequest;

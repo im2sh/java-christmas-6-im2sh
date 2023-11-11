@@ -1,5 +1,6 @@
 package christmas.view;
 
+import static christmas.view.utils.EventMessage.BENEFIT_DETAIL;
 import static christmas.view.utils.EventMessage.EVENT_GUIDE;
 import static christmas.view.utils.EventMessage.GIFT_MENTION;
 import static christmas.view.utils.EventMessage.NOTING_EVENT;
@@ -7,8 +8,12 @@ import static christmas.view.utils.EventMessage.ORDER_RESULT;
 import static christmas.view.utils.EventMessage.OUTPUT_AMOUNT;
 import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
 
+import christmas.domain.Event;
+import christmas.domain.EventName;
 import christmas.response.OrderHistoryResponse;
 import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void printErrorMessage(Exception exception) {

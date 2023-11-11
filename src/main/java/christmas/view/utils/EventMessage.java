@@ -10,6 +10,7 @@ public enum EventMessage {
     OUTPUT_AMOUNT("\n<할인 전 총주문 금액>"),
     GIFT_MENTION("\n<증정 메뉴>"),
     NOTING_EVENT("없음"),
+    BENEFIT_DETAIL("\n<혜택 내역>"),
     ORDER_RESULT("%s %d개");
     private final String message;
 
