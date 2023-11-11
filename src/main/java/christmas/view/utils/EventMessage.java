@@ -8,7 +8,8 @@ public enum EventMessage {
     OUTPUT_ORDER("<주문 메뉴>"),
 
     OUTPUT_AMOUNT("\n<할인 전 총주문 금액>"),
-
+    GIFT_MENTION("\n<증정 메뉴>"),
+    NOTING_EVENT("없음"),
     ORDER_RESULT("%s %d개");
     private final String message;
 

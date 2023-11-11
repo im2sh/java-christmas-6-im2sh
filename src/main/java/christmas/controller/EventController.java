@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
 import christmas.request.FoodOrderRequest;
+import christmas.service.EventService;
 import christmas.validator.DateInputValidator;
 import christmas.validator.OrderInputValidator;
 import christmas.view.InputView;
@@ -22,11 +23,21 @@ public class EventController {
         User user = new User(inputReservationDate());
         FoodOrder foodOrder = new FoodOrder(inputOrder());
         showOrderBill(new OrderController(foodOrder));
+        occursEvent(user,foodOrder);
     }
 
     public void showOrderBill(OrderController orderController) {
         orderController.showOrderHistory();
         orderController.showOrderAmount();
+    }
+
+    public void occursEvent(User user, FoodOrder foodOrder){
+        EventService eventService = new EventService(user, foodOrder);
+        occurGiftEvent(eventService.giftEvent());
+    }
+
+    private void occurGiftEvent(boolean giftEvent){
+        OutputView.printGiftEvent(giftEvent);
     }
 
     private int inputReservationDate() {
