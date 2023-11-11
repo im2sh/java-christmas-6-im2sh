@@ -16,7 +16,7 @@ public class OrderServiceTest {
 
     @Test
     @DisplayName("주문 내역을 출력한다.")
-    public void 주문_내역_출력() throws Exception {
+    public void 주문_내역_출력_테스트() throws Exception {
         //given
         String order = "해산물파스타-2,초코케이크-1,제로콜라-1";
         OrderInputValidator orderInputValidator = new OrderInputValidator();
@@ -30,5 +30,23 @@ public class OrderServiceTest {
         //then
         Assertions.assertEquals(foodOrder.getOrder(),orderHistoryResponse.getOrder());
     }
+
+    @Test
+    @DisplayName("할인 전 총 주문 금액을 출력한다.")
+    public void 할인_전_주문_금액_출력_테스트() throws Exception {
+        //given
+        String order = "해산물파스타-2,초코케이크-1,제로콜라-1";
+        OrderInputValidator orderInputValidator = new OrderInputValidator();
+        FoodOrderRequest foodOrderRequest = orderInputValidator.parseOrders(order);
+
+        //when
+        FoodOrder foodOrder = new FoodOrder(foodOrderRequest);
+        OrderService orderService = new OrderService(foodOrder);
+        OrderHistoryResponse orderHistoryResponse = orderService.getOrderHistoryResponse();
+
+        //then
+        Assertions.assertEquals(foodOrder.getAmount(), orderHistoryResponse.getAmount());
+    }
+
 
 }
