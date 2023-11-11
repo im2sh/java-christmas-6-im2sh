@@ -35,5 +35,4 @@ public enum FoodCategory {
     public List<Food> getFoods() {
         return foods;
     }
-
 }

@@ -1,15 +1,19 @@
 package christmas.validator;
 
+import christmas.domain.Food;
 import christmas.domain.FoodCategory;
+import christmas.domain.FoodOrder;
+import christmas.request.FoodOrderRequest;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class OrderInputValidator {
     public OrderInputValidator() {
     }
 
-    public Map<String, Integer> parseOrders(String order) {
+    public FoodOrderRequest parseOrders(String order) {
         Map<String, Integer> parsedOrder = new HashMap<>();
         NotNullValidate(order);
 
@@ -18,9 +22,22 @@ public class OrderInputValidator {
 
         validateBeverageOnly(parsedOrder);
         validateQuantityExceeded(parsedOrder);
-        return parsedOrder;
+        int amount = calculateAmount(parsedOrder);
+        FoodOrderRequest foodOrderRequest = new FoodOrderRequest(parsedOrder, amount);
+        return foodOrderRequest;
     }
 
+    private int calculateAmount(Map<String, Integer> parseOrders) {
+        AtomicInteger total = new AtomicInteger();
+        parseOrders.forEach((foodName, quantity) ->
+                Arrays.stream(FoodCategory.values())
+                        .flatMap(category -> category.getFoods().stream())
+                        .filter(food -> food.getName().equals(foodName))
+                        .findFirst()
+                        .ifPresent(food -> total.addAndGet(food.getPrice() * quantity))
+        );
+        return total.get();
+    }
 
     private void divideOrders(String menu, Map<String, Integer> parsedOrder) {
         String[] foods = validateMenuFormat(menu.split("-"));

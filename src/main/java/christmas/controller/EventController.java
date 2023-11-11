@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
+import christmas.request.FoodOrderRequest;
 import christmas.validator.DateInputValidator;
 import christmas.validator.OrderInputValidator;
 import christmas.view.InputView;
@@ -25,7 +26,7 @@ public class EventController {
 
     public void showOrderBill(OrderController orderController) {
         orderController.showOrderHistory();
-        ;
+        orderController.showOrderAmount();
     }
 
     private int inputReservationDate() {
@@ -38,7 +39,7 @@ public class EventController {
         }
     }
 
-    private Map<String, Integer> inputOrder() {
+    private FoodOrderRequest inputOrder() {
         while (true) {
             try {
                 return orderInputValidator.parseOrders(InputView.inputOrder());

@@ -16,4 +16,9 @@ public class OrderController {
         OrderHistoryResponse orderHistoryResponse = orderService.getOrderHistoryResponse();
         OutputView.printOrderList(orderHistoryResponse);
     }
+
+    public void showOrderAmount() {
+        OrderHistoryResponse orderHistoryResponse = orderService.getOrderHistoryResponse();
+        OutputView.printOrderAmount(orderHistoryResponse);
+    }
 }

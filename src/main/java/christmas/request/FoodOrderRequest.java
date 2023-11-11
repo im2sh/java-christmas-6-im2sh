@@ -1,12 +1,12 @@
-package christmas.response;
+package christmas.request;
 
 import java.util.Map;
 
-public class OrderHistoryResponse {
-    private final Map<String,Integer> order;
+public class FoodOrderRequest {
+    private final Map<String, Integer> order;
     private final int amount;
 
-    public OrderHistoryResponse(Map<String, Integer> order, int amount) {
+    public FoodOrderRequest(Map<String, Integer> order, int amount) {
         this.order = order;
         this.amount = amount;
     }

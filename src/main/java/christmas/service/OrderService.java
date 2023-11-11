@@ -11,7 +11,7 @@ public class OrderService {
     }
 
     public OrderHistoryResponse getOrderHistoryResponse() {
-        return new OrderHistoryResponse(foodOrder.getOrder());
+        return new OrderHistoryResponse(foodOrder.getOrder(), foodOrder.getAmount());
     }
 
 }
