@@ -21,6 +21,11 @@ public class FoodOrder {
         return amount;
     }
 
+    public boolean checkMinimumEventRequirement(){
+        if(amount >= 10000)
+            return true;
+        return false;
+    }
     public boolean checkGiftEvent(){
         if(amount >= GIFT_STANDARD)
             return true;

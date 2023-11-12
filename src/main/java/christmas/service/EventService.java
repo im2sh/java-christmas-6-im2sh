@@ -33,6 +33,9 @@ public class EventService {
 
     public Event occurEvent() {
         List<EventDetail> allEvent = new ArrayList<>();
+        if(!foodOrder.checkMinimumEventRequirement()){
+            return new Event(allEvent);
+        }
         allEvent.add(christmasEvent());
         allEvent.add(weekEvent());
         allEvent.add(weekendEvent());
