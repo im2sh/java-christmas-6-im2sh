@@ -1,6 +1,8 @@
 package christmas.domain;
 
-import static christmas.domain.Badge.*;
+import static christmas.domain.Badge.NONE;
+import static christmas.domain.Badge.SANTA;
+import static christmas.domain.Badge.STAR;
 import static christmas.domain.Badge.TREE;
 
 import java.util.Arrays;
@@ -67,6 +69,9 @@ public class User {
         }
         if (discountAmount >= STAR.getRequirement() && discountAmount < TREE.getRequirement()) {
             this.badge = STAR;
+        }
+        if (discountAmount < STAR.getRequirement()) {
+            this.badge = NONE;
         }
     }
 }
