@@ -125,16 +125,19 @@ public class UserTest {
         User user1 = new User(1);
         User user2 = new User(10);
         User user3 = new User(25);
+        User user4 = new User(22);
         //when
 
         user1.receiveBadge(5500);
         user2.receiveBadge(15000);
         user3.receiveBadge(33000);
+        user4.receiveBadge(2500);
 
         //then
         assertEquals(Badge.STAR, user1.getBadge());
         assertEquals(Badge.TREE, user2.getBadge());
         assertEquals(Badge.SANTA, user3.getBadge());
+        assertEquals(Badge.NONE, user4.getBadge());
     }
 
 }
