@@ -2,8 +2,11 @@ package domain;
 
 import christmas.domain.EventDiscount;
 import christmas.domain.FoodOrder;
+import christmas.domain.User;
 import christmas.request.FoodOrderRequest;
 import christmas.validator.OrderInputValidator;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +33,7 @@ public class FoodOrderTest {
 
         //then
         Assertions.assertEquals(2 * 2023, dessertCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());
-        Assertions.assertEquals(0 * 2323,dessertCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+        Assertions.assertEquals(0 * 2323, dessertCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
     }
 
     @Test
@@ -53,6 +56,29 @@ public class FoodOrderTest {
 
         //then
         Assertions.assertEquals(3 * 2023, mainCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());
-        Assertions.assertEquals(0 * 2323,mainCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+        Assertions.assertEquals(0 * 2323, mainCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
     }
+
+    @Test
+    @DisplayName("할인 전 총 주문 금액이 12만원을 넘으면 true를 반환한다.")
+    public void 선물_증정_이벤트_최소_금액_테스트() throws Exception {
+        //given
+        User user = new User(25);
+        Map<String, Integer> order1 = new HashMap<>();
+        order1.put("티본스테이크", 3);
+        FoodOrderRequest foodOrderRequest1 = new FoodOrderRequest(order1, 165000);
+
+        Map<String, Integer> order2 = new HashMap<>();
+        order2.put("해산물파스타", 1);
+        FoodOrderRequest foodOrderRequest2 = new FoodOrderRequest(order2, 35000);
+
+        //when
+        FoodOrder canGiftOrder = new FoodOrder(foodOrderRequest1);
+        FoodOrder cannotGiftOrder = new FoodOrder(foodOrderRequest2);
+
+        //then
+        Assertions.assertEquals(true, canGiftOrder.checkGiftEvent());
+        Assertions.assertEquals(false, cannotGiftOrder.checkGiftEvent());
+    }
+
 }
