@@ -54,8 +54,8 @@ public class OrderInputValidator {
     }
 
     private String validateFoodName(String foodName) {
-        validateMenuExistence(foodName);
         validateSpace(foodName);
+        validateMenuExistence(foodName);
         return foodName;
     }
 

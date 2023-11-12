@@ -6,6 +6,7 @@ import christmas.domain.EventDiscount;
 import christmas.domain.EventName;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
+import christmas.response.EventResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,29 +17,28 @@ public class EventService {
     private static final int GIFT = 25000;
     private final User user;
     private final FoodOrder foodOrder;
-    private Event event;
 
     public EventService(User user, FoodOrder foodOrder) {
         this.user = user;
         this.foodOrder = foodOrder;
     }
 
-    public Event showBenefits() {
-        discountEvent();
-        return event;
+    public EventResponse eventToResponse(Event event){
+        return event.toResponse();
     }
 
     public boolean isExistsGift(){
         return foodOrder.checkGiftEvent();
     }
-    public void discountEvent() {
+
+    public Event occurEvent() {
         List<EventDetail> allEvent = new ArrayList<>();
         allEvent.add(christmasEvent());
         allEvent.add(weekEvent());
         allEvent.add(weekendEvent());
         allEvent.add(specialEvent());
         allEvent.add(giftEvent());
-        event = new Event(allEvent);
+        return new Event(allEvent);
     }
 
     private EventDetail christmasEvent() {
@@ -79,6 +79,7 @@ public class EventService {
 
         if (mainCount == ZERO || !user.checkWeekendDate()) {
             weekendEvent.put(EventName.NOTING.getEventName(), ZERO);
+            return new EventDetail(weekendEvent);
         }
         weekendEvent.put(eventName, discount * mainCount);
         return new EventDetail(weekendEvent);

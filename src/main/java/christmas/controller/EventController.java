@@ -4,6 +4,7 @@ import christmas.domain.Event;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
 import christmas.request.FoodOrderRequest;
+import christmas.response.EventResponse;
 import christmas.service.EventService;
 import christmas.validator.DateInputValidator;
 import christmas.validator.OrderInputValidator;
@@ -24,7 +25,9 @@ public class EventController {
         User user = new User(inputReservationDate());
         FoodOrder foodOrder = new FoodOrder(inputOrder());
         showOrderBill(new OrderController(foodOrder));
-        occursEvent(user,foodOrder);
+        EventResponse eventResponse = occursEvent(user, foodOrder);
+        printEvent(eventResponse);
+
     }
 
     public void showOrderBill(OrderController orderController) {
@@ -32,14 +35,21 @@ public class EventController {
         orderController.showOrderAmount();
     }
 
-    public void occursEvent(User user, FoodOrder foodOrder){
+    public EventResponse occursEvent(User user, FoodOrder foodOrder){
         EventService eventService = new EventService(user, foodOrder);
-        occurGiftEvent(eventService.isExistsGift());
+        printGiftEvent(eventService.isExistsGift());
+        Event event = eventService.occurEvent();
+        return eventService.eventToResponse(event);
     }
 
-    private void occurGiftEvent(boolean giftEvent){
+    private void printGiftEvent(boolean giftEvent){
         OutputView.printGiftEvent(giftEvent);
     }
+
+    private void printEvent(EventResponse eventResponse){
+        OutputView.printEvent(eventResponse);
+    }
+
 
     private int inputReservationDate() {
         while (true) {

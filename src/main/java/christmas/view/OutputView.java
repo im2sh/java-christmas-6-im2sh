@@ -9,11 +9,13 @@ import static christmas.view.utils.EventMessage.OUTPUT_AMOUNT;
 import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
 
 import christmas.domain.Event;
-import christmas.domain.EventName;
+import christmas.domain.EventDetail;
+import christmas.response.EventResponse;
 import christmas.response.OrderHistoryResponse;
+import christmas.view.utils.EventMessage;
 import java.text.DecimalFormat;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class OutputView {
     public static void printErrorMessage(Exception exception) {
@@ -42,5 +44,32 @@ public class OutputView {
         if (!giftEvent) {
             System.out.println(NOTING_EVENT.getMessage());
         }
+    }
+
+    public static void printEvent(EventResponse eventResponse) {
+        System.out.println(BENEFIT_DETAIL.getMessage());
+        boolean nothing = true;
+
+        for(EventDetail eventDetail : eventResponse.getEvent()){
+            Map<String, Integer> eventDetailMap = eventDetail.getEventDetail();
+
+            for (Map.Entry<String, Integer> entry : eventDetailMap.entrySet()) {
+                String eventName = entry.getKey();
+                int discountAmount = entry.getValue();
+
+                if (discountAmount != 0) {
+                    nothing = false;
+                    System.out.println(eventName + ": " + formatDiscount(discountAmount));
+                }
+            }
+        }
+
+        if (nothing) {
+            System.out.println(NOTING_EVENT.getMessage());
+        }
+    }
+
+    private static String formatDiscount(int discountAmount) {
+        return String.format("-%,d원", Math.abs(discountAmount));
     }
 }
