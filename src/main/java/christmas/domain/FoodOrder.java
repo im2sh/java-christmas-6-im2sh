@@ -6,6 +6,7 @@ import java.util.Map;
 public class FoodOrder {
     private final Map<String, Integer> order;
     private final int amount;
+    private static final int GIFT_STANDARD = 120000;
 
     public FoodOrder(FoodOrderRequest foodOrderRequest) {
         this.order = foodOrderRequest.getOrder();
@@ -18,6 +19,12 @@ public class FoodOrder {
 
     public int getAmount() {
         return amount;
+    }
+
+    public boolean checkGiftEvent(){
+        if(amount >= GIFT_STANDARD)
+            return true;
+        return false;
     }
 
     public int checkWeekEventDiscount() {

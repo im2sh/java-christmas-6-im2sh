@@ -34,7 +34,7 @@ public class EventController {
 
     public void occursEvent(User user, FoodOrder foodOrder){
         EventService eventService = new EventService(user, foodOrder);
-        occurGiftEvent(eventService.giftEvent());
+        occurGiftEvent(eventService.isExistsGift());
     }
 
     private void occurGiftEvent(boolean giftEvent){

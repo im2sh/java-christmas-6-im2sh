@@ -29,10 +29,10 @@ public class EventServiceTest {
         FoodOrder cannotGiftOrder = new FoodOrder(foodOrderRequest2);
 
         EventService canEventService = new EventService(user, canGiftOrder);
-        boolean canGift = canEventService.giftEvent();
+        boolean canGift = canEventService.isExistsGift();
 
         EventService cannotEventService = new EventService(user, cannotGiftOrder);
-        boolean cannotGift = cannotEventService.giftEvent();
+        boolean cannotGift = cannotEventService.isExistsGift();
 
         //then
         Assertions.assertEquals(true, canGift);
