@@ -28,7 +28,7 @@ public class FoodOrderTest {
         int dessertCount2 = foodOrder2.checkWeekEvent();
 
         //then
-        Assertions.assertEquals(1, dessertCount1);
+        Assertions.assertEquals(2, dessertCount1);
         Assertions.assertEquals(0,dessertCount2);
     }
 

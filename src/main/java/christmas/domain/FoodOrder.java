@@ -21,9 +21,10 @@ public class FoodOrder {
     }
 
     public int checkWeekEvent() {
-        return (int) order.keySet().stream()
-                .filter(foodName -> FoodCategory.디저트.getFoods().stream()
-                        .anyMatch(food -> foodName.equals(food.getName())))
-                .count();
+        return order.entrySet().stream()
+                .filter(entry -> FoodCategory.디저트.getFoods().stream()
+                        .anyMatch(food -> entry.getKey().equals(food.getName())))
+                .mapToInt(entry -> entry.getValue())
+                .sum();
     }
 }
