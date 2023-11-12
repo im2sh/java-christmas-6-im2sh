@@ -1,9 +1,13 @@
 package christmas.domain;
 
+import static christmas.domain.Badge.*;
+import static christmas.domain.Badge.TREE;
+
 import java.util.Arrays;
 
 public class User {
     private final int reservationDate;
+    private Badge badge;
 
     public User(int reservationDate) {
         this.reservationDate = reservationDate;
@@ -22,8 +26,9 @@ public class User {
 
     public boolean checkWeekDate() {
         int[] weekDates = {3, 10, 17, 24};
-        if(reservationDate == 31)
+        if (reservationDate == 31) {
             return true;
+        }
 
         for (int startDate : weekDates) {
             if (reservationDate >= startDate && reservationDate <= startDate + 4) {
@@ -45,7 +50,19 @@ public class User {
     }
 
     public boolean checkSpecialDate() {
-        Integer[] specialDates = {3,10,17,24,25,31};
+        Integer[] specialDates = {3, 10, 17, 24, 25, 31};
         return Arrays.asList(specialDates).contains(reservationDate);
+    }
+
+    public void receiveBadge(int discountAmount) {
+        if (discountAmount >= SANTA.getRequirement()) {
+            this.badge = SANTA;
+        }
+        if (discountAmount >= TREE.getRequirement() && discountAmount < SANTA.getRequirement()) {
+            this.badge = TREE;
+        }
+        if (discountAmount >= STAR.getRequirement() && discountAmount < TREE.getRequirement()) {
+            this.badge = STAR;
+        }
     }
 }
