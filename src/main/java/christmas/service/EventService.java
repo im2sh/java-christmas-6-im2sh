@@ -21,51 +21,66 @@ public class EventService {
         this.foodOrder = foodOrder;
     }
 
-    public boolean giftEvent(){
-        if(foodOrder.getAmount() >= 120000)
+    public boolean giftEvent() {
+        if (foodOrder.getAmount() >= 120000) {
             return true;
+        }
         return false;
     }
 
-    public Event showBenefits(){
+    public Event showBenefits() {
         discountEvent();
         return event;
     }
-    public void discountEvent(){
+
+    public void discountEvent() {
         List<EventDetail> allEvent = new ArrayList<>();
         allEvent.add(christmasEvent());
         allEvent.add(weekEvent());
-
+        allEvent.add(weekendEvent());
         event = new Event(allEvent);
     }
 
-    private EventDetail christmasEvent(){
-        Map<String,Integer> christmasEvent = new HashMap<>();
+    private EventDetail christmasEvent() {
+        Map<String, Integer> christmasEvent = new HashMap<>();
         String eventName = EventName.CHRISTMAS.getEventName();
         int discount = EventDiscount.BASIC.getDiscountMoney();
         int eventDiscount = user.checkChristmasEvent(discount);
 
-        if(!user.checkChristmasDate()) {
+        if (!user.checkChristmasDate()) {
             christmasEvent.put(EventName.NOTING.getEventName(), 0);
             return new EventDetail(christmasEvent);
         }
 
-        christmasEvent.put(eventName,eventDiscount);
+        christmasEvent.put(eventName, eventDiscount);
         return new EventDetail(christmasEvent);
     }
 
-    private  EventDetail weekEvent(){
-        Map<String,Integer> weekEvent = new HashMap<>();
+    private EventDetail weekEvent() {
+        Map<String, Integer> weekEvent = new HashMap<>();
 
         String eventName = EventName.WEEK.getEventName();
         int discount = EventDiscount.FIXED_MONEY.getDiscountMoney();
-        int desertCount = foodOrder.checkWeekEvent();
+        int desertCount = foodOrder.checkWeekEventDiscount();
 
-        if(desertCount == 0 || !user.checkWeekDate()){
+        if (desertCount == 0 || !user.checkWeekDate()) {
             weekEvent.put(EventName.NOTING.getEventName(), 0);
             return new EventDetail(weekEvent);
         }
         weekEvent.put(eventName, discount * desertCount);
         return new EventDetail(weekEvent);
+    }
+
+    private EventDetail weekendEvent() {
+        Map<String, Integer> weekendEvent = new HashMap<>();
+        String eventName = EventName.WEEKEND.getEventName();
+        int discount = EventDiscount.FIXED_MONEY.getDiscountMoney();
+        int mainCount = foodOrder.checkWeekendDiscount();
+
+        if (mainCount == 0 || !user.checkWeekendDate()) {
+            weekendEvent.put(EventName.NOTING.getEventName(), 0);
+        }
+        weekendEvent.put(eventName, discount * mainCount);
+        return new EventDetail(weekendEvent);
     }
 }

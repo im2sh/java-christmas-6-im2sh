@@ -23,10 +23,10 @@ public class FoodOrderTest {
         FoodOrderRequest foodOrderRequest2 = orderInputValidator.parseOrders(order2);
         //when
         FoodOrder foodOrder1 = new FoodOrder(foodOrderRequest1);
-        int dessertCount1 = foodOrder1.checkWeekEvent();
+        int dessertCount1 = foodOrder1.checkWeekEventDiscount();
 
         FoodOrder foodOrder2 = new FoodOrder(foodOrderRequest2);
-        int dessertCount2 = foodOrder2.checkWeekEvent();
+        int dessertCount2 = foodOrder2.checkWeekEventDiscount();
 
         //then
         Assertions.assertEquals(2 * 2023, dessertCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());

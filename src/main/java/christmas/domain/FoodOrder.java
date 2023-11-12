@@ -20,9 +20,17 @@ public class FoodOrder {
         return amount;
     }
 
-    public int checkWeekEvent() {
+    public int checkWeekEventDiscount() {
         return order.entrySet().stream()
                 .filter(entry -> FoodCategory.디저트.getFoods().stream()
+                        .anyMatch(food -> entry.getKey().equals(food.getName())))
+                .mapToInt(entry -> entry.getValue())
+                .sum();
+    }
+
+    public int checkWeekendDiscount() {
+        return order.entrySet().stream()
+                .filter(entry -> FoodCategory.메인.getFoods().stream()
                         .anyMatch(food -> entry.getKey().equals(food.getName())))
                 .mapToInt(entry -> entry.getValue())
                 .sum();
