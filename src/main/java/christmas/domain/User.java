@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.Arrays;
+
 public class User {
     private final int reservationDate;
 
@@ -38,5 +40,10 @@ public class User {
             }
         }
         return false;
+    }
+
+    public boolean checkSpecialDate() {
+        int[] specialDates = {3,10,17,24,25,31};
+        return Arrays.asList(specialDates).contains(reservationDate);
     }
 }

@@ -38,6 +38,7 @@ public class EventService {
         allEvent.add(christmasEvent());
         allEvent.add(weekEvent());
         allEvent.add(weekendEvent());
+        allEvent.add(specialEvent());
         event = new Event(allEvent);
     }
 
@@ -82,5 +83,17 @@ public class EventService {
         }
         weekendEvent.put(eventName, discount * mainCount);
         return new EventDetail(weekendEvent);
+    }
+
+    private EventDetail specialEvent(){
+        Map<String, Integer> specialEvent = new HashMap<>();
+        String eventName = EventName.SPECIAL.getEventName();
+        int discount = EventDiscount.BASIC.getDiscountMoney();
+
+        if (!user.checkSpecialDate()) {
+            specialEvent.put(EventName.NOTING.getEventName(), 0);
+        }
+        specialEvent.put(eventName, discount);
+        return new EventDetail(specialEvent);
     }
 }
