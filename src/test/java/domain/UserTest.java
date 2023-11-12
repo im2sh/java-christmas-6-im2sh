@@ -60,6 +60,7 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("크리스마스 디데이 이벤트 할인 금액 테스트")
     public void 크리스마스_이벤트_할인_테스트() throws Exception {
         //given
         User user1 = new User(dateInputValidator.validateInputDate("25"));
@@ -74,6 +75,18 @@ public class UserTest {
         assertEquals(1100,discount2);
     }
 
-
+    @Test
+    @DisplayName("평일 이벤트 날짜 테스트")
+    public void 평일_이벤트_날짜_테스트() {
+        //given
+        User user1 = new User(dateInputValidator.validateInputDate("25"));
+        User user2 = new User(dateInputValidator.validateInputDate("8"));
+        //when
+        boolean isEvent = user1.checkWeekDate();
+        boolean isNotEvent = user2.checkWeekDate();
+        //then
+        assertEquals(true, isEvent);
+        assertEquals(false, isNotEvent);
+    }
 
 }
