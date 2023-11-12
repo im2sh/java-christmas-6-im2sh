@@ -1,5 +1,6 @@
 package domain;
 
+import christmas.domain.EventDiscount;
 import christmas.domain.FoodOrder;
 import christmas.request.FoodOrderRequest;
 import christmas.validator.OrderInputValidator;
@@ -28,8 +29,8 @@ public class FoodOrderTest {
         int dessertCount2 = foodOrder2.checkWeekEvent();
 
         //then
-        Assertions.assertEquals(2, dessertCount1);
-        Assertions.assertEquals(0,dessertCount2);
+        Assertions.assertEquals(2 * 2023, dessertCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+        Assertions.assertEquals(0 * 2323,dessertCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
     }
 
 }
