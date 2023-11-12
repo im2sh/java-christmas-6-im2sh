@@ -8,16 +8,15 @@ import static christmas.view.utils.EventMessage.ORDER_RESULT;
 import static christmas.view.utils.EventMessage.OUTPUT_AMOUNT;
 import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
 
-import christmas.domain.Event;
-import christmas.domain.EventDetail;
+import christmas.domain.EventName;
 import christmas.response.EventResponse;
 import christmas.response.OrderHistoryResponse;
-import christmas.view.utils.EventMessage;
 import java.text.DecimalFormat;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class OutputView {
+    private final static DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
     public static void printErrorMessage(Exception exception) {
         System.out.println((exception.getMessage() + "\n"));
     }
@@ -31,7 +30,6 @@ public class OutputView {
     }
 
     public static void printOrderAmount(OrderHistoryResponse orderHistoryResponse) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
         System.out.println(OUTPUT_AMOUNT.getMessage());
         System.out.println(decimalFormat.format(orderHistoryResponse.getAmount()));
     }
@@ -48,28 +46,16 @@ public class OutputView {
 
     public static void printEvent(EventResponse eventResponse) {
         System.out.println(BENEFIT_DETAIL.getMessage());
-        boolean nothing = true;
+        AtomicBoolean nothing = new AtomicBoolean(true);
 
-        for(EventDetail eventDetail : eventResponse.getEvent()){
-            Map<String, Integer> eventDetailMap = eventDetail.getEventDetail();
+        eventResponse.getEvent().stream()
+                .flatMap(eventDetail -> eventDetail.getDetail().entrySet().stream())
+                .filter(entry -> !entry.getKey().equals(EventName.NOTING.getEventName()))
+                .peek(entry -> nothing.set(false))
+                .forEach(entry -> System.out.println(entry.getKey() + ": " + decimalFormat.format(entry.getValue())));
 
-            for (Map.Entry<String, Integer> entry : eventDetailMap.entrySet()) {
-                String eventName = entry.getKey();
-                int discountAmount = entry.getValue();
-
-                if (discountAmount != 0) {
-                    nothing = false;
-                    System.out.println(eventName + ": " + formatDiscount(discountAmount));
-                }
-            }
-        }
-
-        if (nothing) {
+        if (nothing.get()) {
             System.out.println(NOTING_EVENT.getMessage());
         }
-    }
-
-    private static String formatDiscount(int discountAmount) {
-        return String.format("-%,d원", Math.abs(discountAmount));
     }
 }

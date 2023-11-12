@@ -3,13 +3,13 @@ package christmas.domain;
 import java.util.Map;
 
 public class EventDetail {
-    private final Map<String, Integer> eventDetail;
+    private final Map<String, Integer> detail;
 
-    public EventDetail(Map<String, Integer> eventDetail) {
-        this.eventDetail = eventDetail;
+    public EventDetail(Map<String, Integer> detail) {
+        this.detail = detail;
     }
 
-    public Map<String, Integer> getEventDetail() {
-        return eventDetail;
+    public Map<String, Integer> getDetail() {
+        return detail;
     }
 }

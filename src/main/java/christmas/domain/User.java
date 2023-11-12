@@ -21,10 +21,12 @@ public class User {
     }
 
     public boolean checkWeekDate() {
-        int[] weekDates = {4, 11, 18, 25};
+        int[] weekDates = {3, 10, 17, 24};
+        if(reservationDate == 31)
+            return true;
 
         for (int startDate : weekDates) {
-            if (reservationDate >= startDate && reservationDate <= startDate + 3) {
+            if (reservationDate >= startDate && reservationDate <= startDate + 4) {
                 return true;
             }
         }

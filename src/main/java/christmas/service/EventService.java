@@ -92,6 +92,7 @@ public class EventService {
 
         if (!user.checkSpecialDate()) {
             specialEvent.put(EventName.NOTING.getEventName(), ZERO);
+            return new EventDetail(specialEvent);
         }
         specialEvent.put(eventName, discount);
         return new EventDetail(specialEvent);
