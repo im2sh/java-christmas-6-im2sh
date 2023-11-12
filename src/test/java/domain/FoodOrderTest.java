@@ -33,4 +33,26 @@ public class FoodOrderTest {
         Assertions.assertEquals(0 * 2323,dessertCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
     }
 
+    @Test
+    @DisplayName("주말 이벤트 할인 금액 테스트")
+    public void 주말_이벤트_할인_테스트() {
+        //given
+        OrderInputValidator orderInputValidator = new OrderInputValidator();
+
+        String order1 = "티본스테이크-2,바비큐립-1,제로콜라-1";
+        FoodOrderRequest foodOrderRequest1 = orderInputValidator.parseOrders(order1);
+
+        String order2 = "타파스-1,시저샐러드-1,초코케이크-1,제로콜라-1";
+        FoodOrderRequest foodOrderRequest2 = orderInputValidator.parseOrders(order2);
+        //when
+        FoodOrder foodOrder1 = new FoodOrder(foodOrderRequest1);
+        int mainCount1 = foodOrder1.checkWeekendDiscount();
+
+        FoodOrder foodOrder2 = new FoodOrder(foodOrderRequest2);
+        int mainCount2 = foodOrder2.checkWeekendDiscount();
+
+        //then
+        Assertions.assertEquals(3 * 2023, mainCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+        Assertions.assertEquals(0 * 2323,mainCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+    }
 }

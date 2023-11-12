@@ -89,4 +89,17 @@ public class UserTest {
         assertEquals(false, isNotEvent);
     }
 
+    @Test
+    @DisplayName("주말 이벤트 날짜 테스트")
+    public void 주말_이벤트_날짜_테스트() {
+        //given
+        User user1 = new User(dateInputValidator.validateInputDate("2"));
+        User user2 = new User(dateInputValidator.validateInputDate("28"));
+        //when
+        boolean isEvent = user1.checkWeekendDate();
+        boolean isNotEvent = user2.checkWeekendDate();
+        //then
+        assertEquals(true, isEvent);
+        assertEquals(false, isNotEvent);
+    }
 }
