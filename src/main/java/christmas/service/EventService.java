@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.domain.Event;
+import christmas.domain.EventDetail;
 import christmas.domain.EventDiscount;
 import christmas.domain.EventName;
 import christmas.domain.FoodOrder;
@@ -31,25 +32,40 @@ public class EventService {
         return event;
     }
     public void discountEvent(){
-        List<Map<String, Integer>> allEvent = new ArrayList<>();
-        Map<String, Integer> christmasEvent = christmasEvent();
+        List<EventDetail> allEvent = new ArrayList<>();
+        allEvent.add(christmasEvent());
+        allEvent.add(weekEvent());
 
-        allEvent.add(christmasEvent);
         event = new Event(allEvent);
     }
 
-    private Map<String,Integer> christmasEvent(){
+    private EventDetail christmasEvent(){
         Map<String,Integer> christmasEvent = new HashMap<>();
-        if(!user.checkDate()) {
-            christmasEvent.put(EventName.NOTING.getEventName(), 0);
-            return christmasEvent;
-        }
         String eventName = EventName.CHRISTMAS.getEventName();
         int discount = EventDiscount.BASIC.getDiscountMoney();
         int eventDiscount = user.checkChristmasEvent(discount);
-        christmasEvent.put(eventName,eventDiscount);
 
-        return christmasEvent;
+        if(!user.checkChristmasDate()) {
+            christmasEvent.put(EventName.NOTING.getEventName(), 0);
+            return new EventDetail(christmasEvent);
+        }
+
+        christmasEvent.put(eventName,eventDiscount);
+        return new EventDetail(christmasEvent);
     }
 
+    private  EventDetail weekEvent(){
+        Map<String,Integer> weekEvent = new HashMap<>();
+
+        String eventName = EventName.WEEK.getEventName();
+        int discount = EventDiscount.FIXED_MONEY.getDiscountMoney();
+        int desertCount = foodOrder.checkWeekEvent();
+
+        if(desertCount == 0 || !user.checkWeekDate()){
+            weekEvent.put(EventName.NOTING.getEventName(), 0);
+            return new EventDetail(weekEvent);
+        }
+        weekEvent.put(eventName, discount * desertCount);
+        return new EventDetail(weekEvent);
+    }
 }

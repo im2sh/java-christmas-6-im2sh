@@ -19,4 +19,11 @@ public class FoodOrder {
     public int getAmount() {
         return amount;
     }
+
+    public int checkWeekEvent() {
+        return (int) order.keySet().stream()
+                .filter(foodName -> FoodCategory.디저트.getFoods().stream()
+                        .anyMatch(food -> foodName.equals(food.getName())))
+                .count();
+    }
 }
