@@ -13,6 +13,10 @@ public class User {
         this.reservationDate = reservationDate;
     }
 
+    public Badge getBadge() {
+        return badge;
+    }
+
     public boolean checkChristmasDate() {
         if (reservationDate <= 25) {
             return true;

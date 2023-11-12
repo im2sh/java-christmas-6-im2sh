@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import christmas.domain.Badge;
 import christmas.domain.EventDiscount;
 import christmas.domain.User;
 import christmas.validator.DateInputValidator;
@@ -116,4 +117,24 @@ public class UserTest {
         assertEquals(true, isEvent);
         assertEquals(false, isNotEvent);
     }
+
+    @Test
+    @DisplayName("할인 금액에 따라 뱃지를 지급한다.")
+    public void 유저_뱃지_발급_테스트() throws Exception {
+        //given
+        User user1 = new User(1);
+        User user2 = new User(10);
+        User user3 = new User(25);
+        //when
+
+        user1.receiveBadge(5500);
+        user2.receiveBadge(15000);
+        user3.receiveBadge(33000);
+
+        //then
+        assertEquals(Badge.STAR, user1.getBadge());
+        assertEquals(Badge.TREE, user2.getBadge());
+        assertEquals(Badge.SANTA, user3.getBadge());
+    }
+
 }
