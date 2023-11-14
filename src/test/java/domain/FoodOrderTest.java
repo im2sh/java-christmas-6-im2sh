@@ -82,7 +82,7 @@ public class FoodOrderTest {
     }
 
     @Test
-    @DisplayName("예상 결제 금액을 출력한다.")
+    @DisplayName("예상 결제 금액을 반환한다.")
     public void 예상_결졔_금액_테스트() throws Exception {
         OrderInputValidator orderInputValidator = new OrderInputValidator();
         //given
