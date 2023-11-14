@@ -4,7 +4,6 @@ import christmas.domain.Event;
 import christmas.domain.FoodOrder;
 
 public class BenefitService {
-    private static int GIFT = 25000;
     private final FoodOrder foodOrder;
     private final Event event;
 
@@ -18,9 +17,6 @@ public class BenefitService {
     }
 
     public int calculateFinalPaymentAmount() {
-        if (foodOrder.checkGiftEvent()) {
-            return foodOrder.calculateExpectedPaymentAmount(calculateBenefitAmount() - GIFT);
-        }
         return foodOrder.calculateExpectedPaymentAmount(calculateBenefitAmount());
     }
 }

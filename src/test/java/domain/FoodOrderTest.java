@@ -81,4 +81,19 @@ public class FoodOrderTest {
         Assertions.assertEquals(false, cannotGiftOrder.checkGiftEvent());
     }
 
+    @Test
+    @DisplayName("예상 결제 금액을 출력한다.")
+    public void 예상_결졔_금액_테스트() throws Exception {
+        OrderInputValidator orderInputValidator = new OrderInputValidator();
+        //given
+        String order = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
+        FoodOrderRequest foodOrderRequest = orderInputValidator.parseOrders(order);
+        //when
+        FoodOrder foodOrder = new FoodOrder(foodOrderRequest);
+        int paymentAmount = foodOrder.calculateExpectedPaymentAmount(31246);
+
+        //then
+        Assertions.assertEquals(135754, paymentAmount);
+    }
+
 }

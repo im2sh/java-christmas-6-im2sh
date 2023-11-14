@@ -8,6 +8,8 @@ public class FoodOrder {
     private final int amount;
     private static final int GIFT_STANDARD = 120000;
 
+    private static int GIFT = 25000;
+
     public FoodOrder(FoodOrderRequest foodOrderRequest) {
         this.order = foodOrderRequest.getOrder();
         this.amount = foodOrderRequest.getAmount();
@@ -52,6 +54,8 @@ public class FoodOrder {
     }
 
     public int calculateExpectedPaymentAmount(int calculateBenefitAmount) {
+        if(checkGiftEvent())
+            return amount - (calculateBenefitAmount - GIFT);
         return amount - calculateBenefitAmount;
     }
 
