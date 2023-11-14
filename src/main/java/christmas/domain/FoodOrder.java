@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.domain.EventDiscount.*;
+
 import christmas.request.FoodOrderRequest;
 import java.util.Map;
 
@@ -8,7 +10,6 @@ public class FoodOrder {
     private final int amount;
     private static final int GIFT_STANDARD = 120000;
 
-    private static int GIFT = 25000;
 
     public FoodOrder(FoodOrderRequest foodOrderRequest) {
         this.order = foodOrderRequest.getOrder();
@@ -55,7 +56,7 @@ public class FoodOrder {
 
     public int calculateExpectedPaymentAmount(int calculateBenefitAmount) {
         if(checkGiftEvent())
-            return amount - (calculateBenefitAmount - GIFT);
+            return amount - (calculateBenefitAmount - GIFT_MONEY.getDiscountMoney());
         return amount - calculateBenefitAmount;
     }
 
