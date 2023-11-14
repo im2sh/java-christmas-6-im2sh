@@ -8,6 +8,9 @@ import static christmas.domain.Badge.TREE;
 import java.util.Arrays;
 
 public class User {
+    private static int CHRISTMAS = 25;
+    private static int LAST_DAY = 31;
+    private static int UNIT_HUNDRED = 100;
     private final int reservationDate;
     private Badge badge;
 
@@ -20,19 +23,19 @@ public class User {
     }
 
     public boolean checkChristmasDate() {
-        if (reservationDate <= 25) {
+        if (reservationDate <= CHRISTMAS) {
             return true;
         }
         return false;
     }
 
     public int checkChristmasEvent(int discount) {
-        return discount + (reservationDate * 100 - 100);
+        return discount + (reservationDate * UNIT_HUNDRED - UNIT_HUNDRED);
     }
 
     public boolean checkWeekDate() {
         int[] weekDates = {3, 10, 17, 24};
-        if (reservationDate == 31) {
+        if (reservationDate == LAST_DAY) {
             return true;
         }
 
