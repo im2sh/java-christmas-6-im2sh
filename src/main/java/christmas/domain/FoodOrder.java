@@ -21,14 +21,17 @@ public class FoodOrder {
         return amount;
     }
 
-    public boolean checkMinimumEventRequirement(){
-        if(amount >= 10000)
+    public boolean checkMinimumEventRequirement() {
+        if (amount >= 10000) {
             return true;
+        }
         return false;
     }
-    public boolean checkGiftEvent(){
-        if(amount >= GIFT_STANDARD)
+
+    public boolean checkGiftEvent() {
+        if (amount >= GIFT_STANDARD) {
             return true;
+        }
         return false;
     }
 
@@ -47,4 +50,9 @@ public class FoodOrder {
                 .mapToInt(entry -> entry.getValue())
                 .sum();
     }
+
+    public int calculateExpectedPaymentAmount(int calculateBenefitAmount) {
+        return amount - calculateBenefitAmount;
+    }
+
 }

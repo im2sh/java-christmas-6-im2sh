@@ -1,18 +1,22 @@
 package christmas.controller;
 
 import christmas.domain.Event;
-import christmas.domain.User;
-import christmas.service.DiscountService;
+import christmas.domain.FoodOrder;
+import christmas.service.BenefitService;
 import christmas.view.OutputView;
 
 public class BenefitController {
-    private final DiscountService discountService;
+    private final BenefitService benefitService;
 
-    public BenefitController(User user, Event event) {
-        this.discountService = new DiscountService(user, event);
+    public BenefitController(FoodOrder foodOrder, Event event) {
+        this.benefitService = new BenefitService(foodOrder, event);
     }
 
-    public void printBenefitAmount(){
-        OutputView.printDiscountAmount(discountService.calculateBenefitAmount());
+    public void printBenefitAmount() {
+        OutputView.printDiscountAmount(benefitService.calculateBenefitAmount());
+    }
+
+    public void printFinalPaymentAmount() {
+        OutputView.printExpectedPaymentAmount(benefitService.calculateFinalPaymentAmount());
     }
 }

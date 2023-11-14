@@ -8,6 +8,7 @@ import static christmas.view.utils.EventMessage.NOTING_EVENT;
 import static christmas.view.utils.EventMessage.ORDER_RESULT;
 import static christmas.view.utils.EventMessage.OUTPUT_AMOUNT;
 import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
+import static christmas.view.utils.EventMessage.PAYMENT_AMOUNT;
 import static christmas.view.utils.EventMessage.UNIT;
 
 import christmas.domain.EventName;
@@ -70,5 +71,10 @@ public class OutputView {
         if (calculateDiscount > 0) {
             System.out.println("-" + decimalFormat.format(calculateDiscount) + UNIT.getMessage());
         }
+    }
+
+    public static void printExpectedPaymentAmount(int calculateExpectedPaymentAmount) {
+        System.out.println(PAYMENT_AMOUNT.getMessage());
+        System.out.println(decimalFormat.format(calculateExpectedPaymentAmount) + UNIT.getMessage());
     }
 }

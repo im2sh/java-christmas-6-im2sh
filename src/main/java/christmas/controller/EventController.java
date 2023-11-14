@@ -26,7 +26,7 @@ public class EventController {
         showOrderBill(foodOrder);
         Event event = occursEvent(user, foodOrder);
         showEventBenefits(event);
-        discountBenefits(user, event);
+        discountBenefits(foodOrder, event);
     }
 
     private void showOrderBill(FoodOrder foodOrder) {
@@ -35,26 +35,28 @@ public class EventController {
         orderController.showOrderAmount();
     }
 
-    public Event occursEvent(User user, FoodOrder foodOrder){
+    public Event occursEvent(User user, FoodOrder foodOrder) {
         EventService eventService = new EventService(user, foodOrder);
         printGiftEvent(eventService.isExistsGift());
         return eventService.occurEvent();
     }
-    private void showEventBenefits(Event event){
+
+    private void showEventBenefits(Event event) {
         EventResponse eventResponse = event.toResponse();
         printEvent(eventResponse);
     }
 
-    private void discountBenefits(User user, Event event) {
-        BenefitController benefitController = new BenefitController(user, event);
+    private void discountBenefits(FoodOrder foodOrder, Event event) {
+        BenefitController benefitController = new BenefitController(foodOrder, event);
         benefitController.printBenefitAmount();
+        benefitController.printFinalPaymentAmount();
     }
 
-    private void printGiftEvent(boolean giftEvent){
+    private void printGiftEvent(boolean giftEvent) {
         OutputView.printGiftEvent(giftEvent);
     }
 
-    private void printEvent(EventResponse eventResponse){
+    private void printEvent(EventResponse eventResponse) {
         OutputView.printEvent(eventResponse);
     }
 
