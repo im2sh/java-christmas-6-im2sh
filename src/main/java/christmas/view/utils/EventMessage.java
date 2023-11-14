@@ -14,6 +14,7 @@ public enum EventMessage {
     UNIT("원"),
     DISCOUNT_BENEFIT("\n<총혜택 금액>"),
     PAYMENT_AMOUNT("\n<할인 후 예상 결제 금액>"),
+    DECEMBER_BADGE("\n<12월 이벤트 배지>"),
     ORDER_RESULT("%s %d개");
     private final String message;
 

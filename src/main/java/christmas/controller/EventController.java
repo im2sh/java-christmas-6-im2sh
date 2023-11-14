@@ -26,7 +26,7 @@ public class EventController {
         showOrderBill(foodOrder);
         Event event = occursEvent(user, foodOrder);
         showEventBenefits(event);
-        discountBenefits(foodOrder, event);
+        occurBenefits(user, foodOrder, event);
     }
 
     private void showOrderBill(FoodOrder foodOrder) {
@@ -46,10 +46,12 @@ public class EventController {
         printEvent(eventResponse);
     }
 
-    private void discountBenefits(FoodOrder foodOrder, Event event) {
-        BenefitController benefitController = new BenefitController(foodOrder, event);
+    private void occurBenefits(User user, FoodOrder foodOrder, Event event) {
+        BenefitController benefitController = new BenefitController(user, foodOrder, event);
         benefitController.printBenefitAmount();
         benefitController.printFinalPaymentAmount();
+        benefitController.evaluateUserBadge();
+        benefitController.printUserBadge();
     }
 
     private void printGiftEvent(boolean giftEvent) {

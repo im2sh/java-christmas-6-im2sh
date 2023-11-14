@@ -1,6 +1,7 @@
 package christmas.view;
 
 import static christmas.view.utils.EventMessage.BENEFIT_DETAIL;
+import static christmas.view.utils.EventMessage.DECEMBER_BADGE;
 import static christmas.view.utils.EventMessage.DISCOUNT_BENEFIT;
 import static christmas.view.utils.EventMessage.EVENT_GUIDE;
 import static christmas.view.utils.EventMessage.GIFT_MENTION;
@@ -11,6 +12,7 @@ import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
 import static christmas.view.utils.EventMessage.PAYMENT_AMOUNT;
 import static christmas.view.utils.EventMessage.UNIT;
 
+import christmas.domain.Badge;
 import christmas.domain.EventName;
 import christmas.response.EventResponse;
 import christmas.response.OrderHistoryResponse;
@@ -76,5 +78,10 @@ public class OutputView {
     public static void printExpectedPaymentAmount(int calculateExpectedPaymentAmount) {
         System.out.println(PAYMENT_AMOUNT.getMessage());
         System.out.println(decimalFormat.format(calculateExpectedPaymentAmount) + UNIT.getMessage());
+    }
+
+    public static void printUserBadge(Badge userBadge) {
+        System.out.println(DECEMBER_BADGE.getMessage());
+        System.out.println(userBadge.getName());
     }
 }
