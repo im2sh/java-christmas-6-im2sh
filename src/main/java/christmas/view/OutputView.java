@@ -1,12 +1,14 @@
 package christmas.view;
 
 import static christmas.view.utils.EventMessage.BENEFIT_DETAIL;
+import static christmas.view.utils.EventMessage.DISCOUNT_BENEFIT;
 import static christmas.view.utils.EventMessage.EVENT_GUIDE;
 import static christmas.view.utils.EventMessage.GIFT_MENTION;
 import static christmas.view.utils.EventMessage.NOTING_EVENT;
 import static christmas.view.utils.EventMessage.ORDER_RESULT;
 import static christmas.view.utils.EventMessage.OUTPUT_AMOUNT;
 import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
+import static christmas.view.utils.EventMessage.UNIT;
 
 import christmas.domain.EventName;
 import christmas.response.EventResponse;
@@ -52,10 +54,21 @@ public class OutputView {
                 .flatMap(eventDetail -> eventDetail.getDetail().entrySet().stream())
                 .filter(entry -> !entry.getKey().equals(EventName.NOTING.getEventName()))
                 .peek(entry -> nothing.set(false))
-                .forEach(entry -> System.out.println(entry.getKey() + ": " + decimalFormat.format(entry.getValue())));
+                .forEach(entry -> System.out.println(
+                        entry.getKey() + ": " + decimalFormat.format(entry.getValue()) + UNIT.getMessage()));
 
         if (nothing.get()) {
             System.out.println(NOTING_EVENT.getMessage());
+        }
+    }
+
+    public static void printDiscountAmount(int calculateDiscount) {
+        System.out.println(DISCOUNT_BENEFIT.getMessage());
+        if (calculateDiscount == 0) {
+            System.out.println(decimalFormat.format(calculateDiscount) + UNIT.getMessage());
+        }
+        if (calculateDiscount > 0) {
+            System.out.println("-" + decimalFormat.format(calculateDiscount) + UNIT.getMessage());
         }
     }
 }

@@ -11,6 +11,8 @@ public enum EventMessage {
     GIFT_MENTION("\n<증정 메뉴>"),
     NOTING_EVENT("없음"),
     BENEFIT_DETAIL("\n<혜택 내역>"),
+    UNIT("원"),
+    DISCOUNT_BENEFIT("\n<총혜택 금액>"),
     ORDER_RESULT("%s %d개");
     private final String message;
 

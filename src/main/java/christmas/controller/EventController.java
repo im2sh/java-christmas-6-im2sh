@@ -10,7 +10,6 @@ import christmas.validator.DateInputValidator;
 import christmas.validator.OrderInputValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
-import java.util.Map;
 
 public class EventController {
     private final DateInputValidator dateInputValidator;
@@ -24,22 +23,31 @@ public class EventController {
     public void event() {
         User user = new User(inputReservationDate());
         FoodOrder foodOrder = new FoodOrder(inputOrder());
-        showOrderBill(new OrderController(foodOrder));
-        EventResponse eventResponse = occursEvent(user, foodOrder);
-        printEvent(eventResponse);
-
+        showOrderBill(foodOrder);
+        Event event = occursEvent(user, foodOrder);
+        showEventBenefits(event);
+        discountBenefits(user, event);
     }
 
-    public void showOrderBill(OrderController orderController) {
+    private void showOrderBill(FoodOrder foodOrder) {
+        OrderController orderController = new OrderController(foodOrder);
         orderController.showOrderHistory();
         orderController.showOrderAmount();
     }
 
-    public EventResponse occursEvent(User user, FoodOrder foodOrder){
+    public Event occursEvent(User user, FoodOrder foodOrder){
         EventService eventService = new EventService(user, foodOrder);
         printGiftEvent(eventService.isExistsGift());
-        Event event = eventService.occurEvent();
-        return eventService.eventToResponse(event);
+        return eventService.occurEvent();
+    }
+    private void showEventBenefits(Event event){
+        EventResponse eventResponse = event.toResponse();
+        printEvent(eventResponse);
+    }
+
+    private void discountBenefits(User user, Event event) {
+        BenefitController benefitController = new BenefitController(user, event);
+        benefitController.printBenefitAmount();
     }
 
     private void printGiftEvent(boolean giftEvent){

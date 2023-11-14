@@ -2,7 +2,6 @@ package christmas.domain;
 
 import christmas.response.EventResponse;
 import java.util.List;
-import java.util.Map;
 
 public class Event {
     private final List<EventDetail> event;
@@ -11,7 +10,14 @@ public class Event {
         this.event = event;
     }
 
-    public EventResponse toResponse(){
+    public EventResponse toResponse() {
         return new EventResponse(event);
+    }
+
+    public int calculateBenefitAmount() {
+        return event.stream()
+                .flatMap(eventDetail -> eventDetail.getDetail().values().stream())
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
