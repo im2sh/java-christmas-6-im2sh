@@ -1,16 +1,20 @@
 package christmas.validator;
 
-import static christmas.validator.constants.ErrorMessage.*;
+import static christmas.validator.constants.ErrorMessage.ORDER_INPUT_ERROR;
 
 import christmas.domain.constants.FoodCategory;
 import christmas.request.FoodOrderRequest;
-import christmas.validator.constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OrderInputValidator {
+    private static final String COMMA = ",";
+    private static final String DASH = "-";
+    private static final int ZERO = 0;
+    private static final int PARSING_STANDARD = 2;
+
     public OrderInputValidator() {
     }
 
@@ -18,7 +22,7 @@ public class OrderInputValidator {
         Map<String, Integer> parsedOrder = new HashMap<>();
         NotNullValidate(order);
 
-        Arrays.stream(order.split(","))
+        Arrays.stream(order.split(COMMA))
                 .forEach(menu -> divideOrders(menu, parsedOrder));
 
         validateBeverageOnly(parsedOrder);
@@ -41,14 +45,14 @@ public class OrderInputValidator {
     }
 
     private void divideOrders(String menu, Map<String, Integer> parsedOrder) {
-        String[] foods = validateMenuFormat(menu.split("-"));
+        String[] foods = validateMenuFormat(menu.split(DASH));
         String foodName = validateFoodName(foods[0]);
         validateIsExistsAlreadyFood(parsedOrder, foodName);
         parsedOrder.put(foodName, parseQuantity(foods[1]));
     }
 
     private String[] validateMenuFormat(String[] foods) {
-        if (foods.length != 2) {
+        if (foods.length != PARSING_STANDARD) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
         return foods;
@@ -91,7 +95,7 @@ public class OrderInputValidator {
     }
 
     private void validateQuantityMinimum(int quantity) {
-        if (quantity <= 0) {
+        if (quantity <= ZERO) {
             throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
