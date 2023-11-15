@@ -132,12 +132,79 @@
 </br></br>
 - 12월 이벤트 배지를 출력한다.
   - [X] 총 혜택 금액을 바탕으로 배지를 발급한다.
-  - [ ] 발급받은 배지를 출력한다.
-  - [ ] 발급받은 뱃지가 없다면 "없음"으로 출력한다.
+  - [X] 발급받은 배지를 출력한다.
+  - [X] 발급받은 뱃지가 없다면 "없음"으로 출력한다.
 
 # 📋 기능 명세서
 
 ---
+## Controller
+- BenefitController
+  - EventController에 의해 가공된 User, FoodOrder, Event를 받아 BenefitService로 보내 이벤트 혜택을 처리한다.
+  - 처리한 혜택을 OutputView로 보낸다.
+- EventController
+  - 전체적인 Flow를 제어한다.
+  - User와 FoodOrder를 InputView로부터 받아 Validator로 보내 검증과 파싱을 통해 가공한 데이터를 받는다.
+  - 가공한 데이터를 EventService로 보내 이벤트를 발생시킨다.
+- OrderController
+  - EventController에 의해 가공된 FoodOrder를 받아 OderService로 보내 주문 내역을 처리한다.
+  - 처리한 주문 내역을 OutputView로 보낸다.
+
+## Domain
+- Event
+  - User가 혜택을 받을 수 있는 Event를 저장한다.
+  - 혜택으로 받을 수 있는 금액을 반환한다.
+- EventDetail
+  - Event의 상세 내용을 저장한다.
+- Food
+  - FoodCategory에 에서 사용할 자료형을 Class로 변환
+- FoodOrder
+  - 주문 내역을 저장한다.
+  - 주문 내역을 바탕으로 적용된 이벤트의 할인을 위해 Category의 갯수를 반환한다.
+- User
+  - 예약 일자와 뱃지를 저장한다.
+  - 예약 일자를 바탕으로 적용할 수 있는 데이터를 찾아서 결과를 반환한다.
+### Constants
+- Badge
+  - 사용자가 발급받을 수 있는 뱃지를 상수로 모아둔 enum 클래스
+- EventDiscount
+  - 이벤트에서 적용될 수 있는 할인 금액을 모아둔 enum 클래스
+- EventName
+  - 이벤트에서 적용될 수 있는 이벤트명을 모아둔 enum 클래스
+- FoodCategory
+  - 메뉴판에 존재하는 메뉴를 모아둔 enum 클래스
+
+## Request
+- FoodOrderRequest
+  - 입력받은 주문 내역을 거쳐가기 위한 일종의 DTO
+## Response
+- EventResponse
+  - 이벤트 결과를 OutputView에 보여주기 위한 Response 객체
+- OrderHistoryResponse
+  - 주문 내역을 OutputView에 보여주기 위한 Response 객체
+
+## Service
+- BenefitService
+  - BenefitController에서 데이터를 받아 할인 혜택을 연산하는 로직을 수행
+- EventService
+  - EventController에서 데이터를 받아 적용 가능한 이벤트를 연산하는 로직을 수행
+- OrderService
+  - OrderController에서 데이터를 받아 주문한 내역을 반환하는 로직을 수행
+
+## Validator
+- DateInputValidator
+  - 입력받은 예약 날짜를 검증하고 검증에 성공할 시에 파싱한 값을 반환한다.
+- OrderInputValidator
+  - 입력받은 주문을 검증하고 검증에 성공할 시에 파싱한 값을 반환한다.
+
+## View
+- InputView 
+  - 사용자에게 입력받은 데이터를 EventController에게 넘겨준다.
+- OutputView
+  - Controller에서 받은 데이터를 출력한다.
+### utils
+- EventMessage
+  - View에 필요한 Message를 모아둔 Enum 클래스
 
 # 📢 변경점
 
