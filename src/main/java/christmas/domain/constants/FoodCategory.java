@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.constants;
 
 import christmas.domain.Food;
 import java.util.Arrays;

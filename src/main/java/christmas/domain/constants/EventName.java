@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.constants;
 
 public enum EventName {
     CHRISTMAS("크리스마스 디데이 할인"),

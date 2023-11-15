@@ -1,10 +1,11 @@
 package christmas.domain;
 
-import static christmas.domain.Badge.NONE;
-import static christmas.domain.Badge.SANTA;
-import static christmas.domain.Badge.STAR;
-import static christmas.domain.Badge.TREE;
+import static christmas.domain.constants.Badge.NONE;
+import static christmas.domain.constants.Badge.SANTA;
+import static christmas.domain.constants.Badge.STAR;
+import static christmas.domain.constants.Badge.TREE;
 
+import christmas.domain.constants.Badge;
 import java.util.Arrays;
 
 public class User {

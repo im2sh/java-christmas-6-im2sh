@@ -1,6 +1,6 @@
 package domain;
 
-import christmas.domain.EventDiscount;
+import christmas.domain.constants.EventDiscount;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
 import christmas.request.FoodOrderRequest;

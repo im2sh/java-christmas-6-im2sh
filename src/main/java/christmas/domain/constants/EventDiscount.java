@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.constants;
 
 public enum EventDiscount {
     BASIC(1000),

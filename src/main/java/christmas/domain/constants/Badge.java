@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.constants;
 
 public enum Badge {
     STAR("별", 5000),

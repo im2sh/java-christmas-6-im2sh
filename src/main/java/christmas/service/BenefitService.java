@@ -1,6 +1,6 @@
 package christmas.service;
 
-import christmas.domain.Badge;
+import christmas.domain.constants.Badge;
 import christmas.domain.Event;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;

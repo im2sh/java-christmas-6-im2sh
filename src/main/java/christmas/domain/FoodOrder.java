@@ -1,7 +1,8 @@
 package christmas.domain;
 
-import static christmas.domain.EventDiscount.*;
+import static christmas.domain.constants.EventDiscount.*;
 
+import christmas.domain.constants.FoodCategory;
 import christmas.request.FoodOrderRequest;
 import java.util.Map;
 

@@ -1,6 +1,6 @@
 package christmas.view;
 
-import static christmas.domain.EventDiscount.ZERO;
+import static christmas.domain.constants.EventDiscount.ZERO;
 import static christmas.view.utils.EventMessage.BENEFIT_DETAIL;
 import static christmas.view.utils.EventMessage.COLON;
 import static christmas.view.utils.EventMessage.DECEMBER_BADGE;
@@ -16,8 +16,8 @@ import static christmas.view.utils.EventMessage.PAYMENT_AMOUNT;
 import static christmas.view.utils.EventMessage.UNIT;
 import static christmas.view.utils.EventMessage.printMessage;
 
-import christmas.domain.Badge;
-import christmas.domain.EventName;
+import christmas.domain.constants.Badge;
+import christmas.domain.constants.EventName;
 import christmas.response.EventResponse;
 import christmas.response.OrderHistoryResponse;
 import java.text.DecimalFormat;

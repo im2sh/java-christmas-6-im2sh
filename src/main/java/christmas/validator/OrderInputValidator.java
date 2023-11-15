@@ -1,8 +1,6 @@
 package christmas.validator;
 
-import christmas.domain.Food;
-import christmas.domain.FoodCategory;
-import christmas.domain.FoodOrder;
+import christmas.domain.constants.FoodCategory;
 import christmas.request.FoodOrderRequest;
 import java.util.Arrays;
 import java.util.HashMap;

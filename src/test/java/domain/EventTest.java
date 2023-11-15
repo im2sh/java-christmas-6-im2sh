@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.domain.Event;
 import christmas.domain.EventDetail;
-import christmas.domain.EventDiscount;
-import christmas.domain.EventName;
+import christmas.domain.constants.EventDiscount;
+import christmas.domain.constants.EventName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

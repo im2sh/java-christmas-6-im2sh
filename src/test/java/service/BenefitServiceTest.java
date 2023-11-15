@@ -1,14 +1,14 @@
 package service;
 
-import static christmas.domain.EventDiscount.BASIC;
-import static christmas.domain.EventDiscount.GIFT_MONEY;
-import static christmas.domain.EventName.CHRISTMAS;
-import static christmas.domain.EventName.GIFT;
-import static christmas.domain.EventName.SPECIAL;
-import static christmas.domain.EventName.WEEK;
+import static christmas.domain.constants.EventDiscount.BASIC;
+import static christmas.domain.constants.EventDiscount.GIFT_MONEY;
+import static christmas.domain.constants.EventName.CHRISTMAS;
+import static christmas.domain.constants.EventName.GIFT;
+import static christmas.domain.constants.EventName.SPECIAL;
+import static christmas.domain.constants.EventName.WEEK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.domain.Badge;
+import christmas.domain.constants.Badge;
 import christmas.domain.Event;
 import christmas.domain.EventDetail;
 import christmas.domain.FoodOrder;

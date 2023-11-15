@@ -1,15 +1,15 @@
 package christmas.service;
 
-import static christmas.domain.EventDiscount.BASIC;
-import static christmas.domain.EventDiscount.FIXED_MONEY;
-import static christmas.domain.EventDiscount.GIFT_MONEY;
-import static christmas.domain.EventDiscount.ZERO;
-import static christmas.domain.EventName.CHRISTMAS;
-import static christmas.domain.EventName.GIFT;
-import static christmas.domain.EventName.NOTING;
-import static christmas.domain.EventName.SPECIAL;
-import static christmas.domain.EventName.WEEK;
-import static christmas.domain.EventName.WEEKEND;
+import static christmas.domain.constants.EventDiscount.BASIC;
+import static christmas.domain.constants.EventDiscount.FIXED_MONEY;
+import static christmas.domain.constants.EventDiscount.GIFT_MONEY;
+import static christmas.domain.constants.EventDiscount.ZERO;
+import static christmas.domain.constants.EventName.CHRISTMAS;
+import static christmas.domain.constants.EventName.GIFT;
+import static christmas.domain.constants.EventName.NOTING;
+import static christmas.domain.constants.EventName.SPECIAL;
+import static christmas.domain.constants.EventName.WEEK;
+import static christmas.domain.constants.EventName.WEEKEND;
 
 import christmas.domain.Event;
 import christmas.domain.EventDetail;
