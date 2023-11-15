@@ -84,8 +84,8 @@ public class FoodOrderTest {
     @Test
     @DisplayName("예상 결제 금액을 반환한다.")
     public void 예상_결졔_금액_테스트() throws Exception {
-        OrderInputValidator orderInputValidator = new OrderInputValidator();
         //given
+        OrderInputValidator orderInputValidator = new OrderInputValidator();
         String order = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
         FoodOrderRequest foodOrderRequest = orderInputValidator.parseOrders(order);
         //when
@@ -94,6 +94,30 @@ public class FoodOrderTest {
 
         //then
         Assertions.assertEquals(135754, paymentAmount);
+    }
+
+    @Test
+    @DisplayName("이벤트 최소 금액을 검증하여 참여가 가능할 시에 True를 반환한다.")
+    public void 이벤트_최소_금액_테스트() throws Exception {
+        //given
+        OrderInputValidator orderInputValidator = new OrderInputValidator();
+
+        String order1 = "시저샐러드-1";
+        FoodOrderRequest foodOrderRequest1 = orderInputValidator.parseOrders(order1);
+
+        String order2 = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
+        FoodOrderRequest foodOrderRequest2 = orderInputValidator.parseOrders(order2);
+
+        FoodOrder foodOrder1 = new FoodOrder(foodOrderRequest1);
+        FoodOrder foodOrder2 = new FoodOrder(foodOrderRequest2);
+
+        //when
+        boolean cannotEvent = foodOrder1.checkMinimumEventRequirement();
+        boolean canEvent = foodOrder2.checkMinimumEventRequirement();
+
+        //then
+        Assertions.assertEquals(false, cannotEvent);
+        Assertions.assertEquals(true, canEvent);
     }
 
 }
