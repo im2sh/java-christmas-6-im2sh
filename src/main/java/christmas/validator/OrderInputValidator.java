@@ -1,7 +1,10 @@
 package christmas.validator;
 
+import static christmas.validator.constants.ErrorMessage.*;
+
 import christmas.domain.constants.FoodCategory;
 import christmas.request.FoodOrderRequest;
+import christmas.validator.constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +49,7 @@ public class OrderInputValidator {
 
     private String[] validateMenuFormat(String[] foods) {
         if (foods.length != 2) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
         return foods;
     }
@@ -61,19 +64,19 @@ public class OrderInputValidator {
         if (!Arrays.stream(FoodCategory.values())
                 .flatMap(category -> category.getFoods().stream())
                 .anyMatch(food -> foodName.equals(food.getName()))) {
-            throw new IllegalArgumentException("[ERROR] 메뉴가 존재하지 않습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
     private void validateSpace(String foodName) {
         if (foodName.contains(" ")) {
-            throw new IllegalArgumentException("[ERROR] 입력에는 공백이 허용되지 않습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
     private void validateIsExistsAlreadyFood(Map<String, Integer> parsedOrder, String foodName) {
         if (parsedOrder.containsKey(foodName)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 메뉴는 입력할 수 없습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
@@ -83,19 +86,19 @@ public class OrderInputValidator {
             validateQuantityMinimum(quantity);
             return quantity;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
     private void validateQuantityMinimum(int quantity) {
         if (quantity <= 0) {
-            throw new IllegalArgumentException("[ERROR] 메뉴의 수량은 최소 1개 이상입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
     private void validateBeverageOnly(Map<String, Integer> parsedOrder) {
         if (parsedOrder.keySet().stream().allMatch(this::isBeverage)) {
-            throw new IllegalArgumentException("[ERROR] 음료수만 주문할 수 없습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
@@ -105,13 +108,13 @@ public class OrderInputValidator {
 
     private void validateQuantityExceeded(Map<String, Integer> parsedOrder) {
         if (parsedOrder.values().stream().mapToInt(Integer::intValue).sum() > 20) {
-            throw new IllegalArgumentException("[ERROR] 주문 수량은 최대 20개입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 
     private void NotNullValidate(String order) {
         if (order == null) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 null 입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_INPUT_ERROR.getMessage());
         }
     }
 }
