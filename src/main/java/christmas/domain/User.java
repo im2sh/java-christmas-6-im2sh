@@ -9,9 +9,9 @@ import christmas.domain.constants.Badge;
 import java.util.Arrays;
 
 public class User {
-    private static int CHRISTMAS = 25;
-    private static int LAST_DAY = 31;
-    private static int UNIT_HUNDRED = 100;
+    private static final int CHRISTMAS = 25;
+    private static final int LAST_DAY = 31;
+    private static final int UNIT_HUNDRED = 100;
     private final int reservationDate;
     private Badge badge;
 
