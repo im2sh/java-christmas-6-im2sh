@@ -3,9 +3,9 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import christmas.domain.User;
 import christmas.domain.constants.Badge;
 import christmas.domain.constants.EventDiscount;
-import christmas.domain.User;
 import christmas.validator.DateInputValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -73,7 +73,7 @@ public class UserTest {
 
         //then
         assertEquals(3400, discount1);
-        assertEquals(1100,discount2);
+        assertEquals(1100, discount2);
     }
 
     @Test

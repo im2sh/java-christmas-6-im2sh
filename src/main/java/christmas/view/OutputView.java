@@ -1,20 +1,20 @@
 package christmas.view;
 
 import static christmas.domain.constants.EventDiscount.ZERO;
-import static christmas.view.utils.EventMessage.BENEFIT_DETAIL;
-import static christmas.view.utils.EventMessage.COLON;
-import static christmas.view.utils.EventMessage.DECEMBER_BADGE;
-import static christmas.view.utils.EventMessage.DISCOUNT_BENEFIT;
-import static christmas.view.utils.EventMessage.EVENT_GUIDE;
-import static christmas.view.utils.EventMessage.GIFT_MENTION;
-import static christmas.view.utils.EventMessage.NOTING_EVENT;
-import static christmas.view.utils.EventMessage.ONE_CHAMPAGNE;
-import static christmas.view.utils.EventMessage.ORDER_RESULT;
-import static christmas.view.utils.EventMessage.OUTPUT_AMOUNT;
-import static christmas.view.utils.EventMessage.OUTPUT_ORDER;
-import static christmas.view.utils.EventMessage.PAYMENT_AMOUNT;
-import static christmas.view.utils.EventMessage.UNIT;
-import static christmas.view.utils.EventMessage.printMessage;
+import static christmas.view.constants.EventMessage.BENEFIT_DETAIL;
+import static christmas.view.constants.EventMessage.COLON;
+import static christmas.view.constants.EventMessage.DECEMBER_BADGE;
+import static christmas.view.constants.EventMessage.DISCOUNT_BENEFIT;
+import static christmas.view.constants.EventMessage.EVENT_GUIDE;
+import static christmas.view.constants.EventMessage.GIFT_MENTION;
+import static christmas.view.constants.EventMessage.NOTING_EVENT;
+import static christmas.view.constants.EventMessage.ONE_CHAMPAGNE;
+import static christmas.view.constants.EventMessage.ORDER_RESULT;
+import static christmas.view.constants.EventMessage.OUTPUT_AMOUNT;
+import static christmas.view.constants.EventMessage.OUTPUT_ORDER;
+import static christmas.view.constants.EventMessage.PAYMENT_AMOUNT;
+import static christmas.view.constants.EventMessage.UNIT;
+import static christmas.view.constants.EventMessage.printMessage;
 
 import christmas.domain.constants.Badge;
 import christmas.domain.constants.EventName;

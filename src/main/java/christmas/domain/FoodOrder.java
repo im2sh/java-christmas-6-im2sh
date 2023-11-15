@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.domain.constants.EventDiscount.*;
+import static christmas.domain.constants.EventDiscount.GIFT_MONEY;
 
 import christmas.domain.constants.FoodCategory;
 import christmas.request.FoodOrderRequest;
@@ -57,8 +57,9 @@ public class FoodOrder {
     }
 
     public int calculateExpectedPaymentAmount(int calculateBenefitAmount) {
-        if(checkGiftEvent())
+        if (checkGiftEvent()) {
             return amount - (calculateBenefitAmount - GIFT_MONEY.getDiscountMoney());
+        }
         return amount - calculateBenefitAmount;
     }
 

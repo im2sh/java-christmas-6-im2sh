@@ -21,9 +21,10 @@ public class BenefitController {
         OutputView.printExpectedPaymentAmount(benefitService.calculateFinalPaymentAmount());
     }
 
-    public void evaluateUserBadge(){
+    public void evaluateUserBadge() {
         benefitService.evaluateUserBadge();
     }
+
     public void printUserBadge() {
         OutputView.printUserBadge(benefitService.getUserBadge());
     }

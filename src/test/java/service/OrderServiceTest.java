@@ -5,10 +5,7 @@ import christmas.request.FoodOrderRequest;
 import christmas.response.OrderHistoryResponse;
 import christmas.service.OrderService;
 import christmas.validator.OrderInputValidator;
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +25,7 @@ public class OrderServiceTest {
         OrderHistoryResponse orderHistoryResponse = orderService.getOrderHistoryResponse();
 
         //then
-        Assertions.assertEquals(foodOrder.getOrder(),orderHistoryResponse.getOrder());
+        Assertions.assertEquals(foodOrder.getOrder(), orderHistoryResponse.getOrder());
     }
 
     @Test

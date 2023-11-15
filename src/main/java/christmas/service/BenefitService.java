@@ -1,9 +1,9 @@
 package christmas.service;
 
-import christmas.domain.constants.Badge;
 import christmas.domain.Event;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
+import christmas.domain.constants.Badge;
 
 public class BenefitService {
     private final User user;
@@ -23,11 +23,12 @@ public class BenefitService {
     public int calculateFinalPaymentAmount() {
         return foodOrder.calculateExpectedPaymentAmount(calculateBenefitAmount());
     }
-    public void evaluateUserBadge(){
+
+    public void evaluateUserBadge() {
         user.receiveBadge(calculateBenefitAmount());
     }
 
-    public Badge getUserBadge(){
+    public Badge getUserBadge() {
         return user.getBadge();
     }
 }

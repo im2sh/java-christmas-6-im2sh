@@ -8,11 +8,11 @@ import static christmas.domain.constants.EventName.SPECIAL;
 import static christmas.domain.constants.EventName.WEEK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.domain.constants.Badge;
 import christmas.domain.Event;
 import christmas.domain.EventDetail;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
+import christmas.domain.constants.Badge;
 import christmas.request.FoodOrderRequest;
 import christmas.service.BenefitService;
 import christmas.validator.OrderInputValidator;

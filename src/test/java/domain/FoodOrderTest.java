@@ -1,8 +1,8 @@
 package domain;
 
-import christmas.domain.constants.EventDiscount;
 import christmas.domain.FoodOrder;
 import christmas.domain.User;
+import christmas.domain.constants.EventDiscount;
 import christmas.request.FoodOrderRequest;
 import christmas.validator.OrderInputValidator;
 import java.util.HashMap;

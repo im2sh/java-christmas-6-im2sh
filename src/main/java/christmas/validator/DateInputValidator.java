@@ -3,6 +3,7 @@ package christmas.validator;
 public class DateInputValidator {
     private static final int START_DATE = 1;
     private static final int END_DATE = 31;
+
     public DateInputValidator() {
     }
 
