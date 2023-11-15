@@ -20,7 +20,7 @@ public class EventController {
         this.orderInputValidator = orderInputValidator;
     }
 
-    public void event() {
+    public void startDecemberEvent() {
         User user = new User(inputReservationDate());
         FoodOrder foodOrder = new FoodOrder(inputOrder());
         showOrderBill(foodOrder);

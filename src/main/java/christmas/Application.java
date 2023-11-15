@@ -9,6 +9,6 @@ public class Application {
         DateInputValidator dateInputValidator = new DateInputValidator();
         OrderInputValidator orderInputValidator = new OrderInputValidator();
         EventController eventController = new EventController(dateInputValidator, orderInputValidator);
-        eventController.event();
+        eventController.startDecemberEvent();
     }
 }
