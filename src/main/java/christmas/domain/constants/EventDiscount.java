@@ -1,8 +1,8 @@
 package christmas.domain.constants;
 
 public enum EventDiscount {
-    BASIC(1000),
-    FIXED_MONEY(2023),
+    CHRISTMAS_OR_SPECIAL(1000),
+    WEEK_OR_WEEKEND(2023),
     ZERO(0),
     GIFT_MONEY(25000);
     private final int discountMoney;

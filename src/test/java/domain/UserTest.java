@@ -68,8 +68,8 @@ public class UserTest {
         User user2 = new User(dateInputValidator.validateInputDate("2"));
 
         //when
-        int discount1 = user1.checkChristmasEvent(EventDiscount.BASIC.getDiscountMoney());
-        int discount2 = user2.checkChristmasEvent(EventDiscount.BASIC.getDiscountMoney());
+        int discount1 = user1.checkChristmasEvent(EventDiscount.CHRISTMAS_OR_SPECIAL.getDiscountMoney());
+        int discount2 = user2.checkChristmasEvent(EventDiscount.CHRISTMAS_OR_SPECIAL.getDiscountMoney());
 
         //then
         assertEquals(3400, discount1);

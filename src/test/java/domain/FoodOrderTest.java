@@ -32,8 +32,8 @@ public class FoodOrderTest {
         int dessertCount2 = foodOrder2.checkWeekEventDiscount();
 
         //then
-        Assertions.assertEquals(2 * 2023, dessertCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());
-        Assertions.assertEquals(0 * 2323, dessertCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+        Assertions.assertEquals(2 * 2023, dessertCount1 * EventDiscount.WEEK_OR_WEEKEND.getDiscountMoney());
+        Assertions.assertEquals(0 * 2323, dessertCount2 * EventDiscount.WEEK_OR_WEEKEND.getDiscountMoney());
     }
 
     @Test
@@ -55,8 +55,8 @@ public class FoodOrderTest {
         int mainCount2 = foodOrder2.checkWeekendDiscount();
 
         //then
-        Assertions.assertEquals(3 * 2023, mainCount1 * EventDiscount.FIXED_MONEY.getDiscountMoney());
-        Assertions.assertEquals(0 * 2323, mainCount2 * EventDiscount.FIXED_MONEY.getDiscountMoney());
+        Assertions.assertEquals(3 * 2023, mainCount1 * EventDiscount.WEEK_OR_WEEKEND.getDiscountMoney());
+        Assertions.assertEquals(0 * 2323, mainCount2 * EventDiscount.WEEK_OR_WEEKEND.getDiscountMoney());
     }
 
     @Test

@@ -1,6 +1,6 @@
 package service;
 
-import static christmas.domain.constants.EventDiscount.BASIC;
+import static christmas.domain.constants.EventDiscount.CHRISTMAS_OR_SPECIAL;
 import static christmas.domain.constants.EventDiscount.GIFT_MONEY;
 import static christmas.domain.constants.EventName.CHRISTMAS;
 import static christmas.domain.constants.EventName.GIFT;
@@ -45,7 +45,7 @@ public class BenefitServiceTest {
         EventDetail weekDetail = new EventDetail(week);
 
         Map<String, Integer> special = new HashMap<>();
-        special.put(SPECIAL.getEventName(), BASIC.getDiscountMoney());
+        special.put(SPECIAL.getEventName(), CHRISTMAS_OR_SPECIAL.getDiscountMoney());
         EventDetail specialDetail = new EventDetail(special);
 
         Map<String, Integer> gift = new HashMap<>();

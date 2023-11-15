@@ -23,8 +23,8 @@ public class EventTest {
         Map<String, Integer> weekend = new HashMap<>();
         Map<String, Integer> week = new HashMap<>();
 
-        christmas.put(EventName.CHRISTMAS.getEventName(), EventDiscount.BASIC.getDiscountMoney());
-        weekend.put(EventName.WEEKEND.getEventName(), EventDiscount.FIXED_MONEY.getDiscountMoney());
+        christmas.put(EventName.CHRISTMAS.getEventName(), EventDiscount.CHRISTMAS_OR_SPECIAL.getDiscountMoney());
+        weekend.put(EventName.WEEKEND.getEventName(), EventDiscount.WEEK_OR_WEEKEND.getDiscountMoney());
         week.put(EventName.WEEK.getEventName(), 0);
 
         EventDetail christmasDetail = new EventDetail(christmas);

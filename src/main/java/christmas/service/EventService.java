@@ -1,7 +1,7 @@
 package christmas.service;
 
-import static christmas.domain.constants.EventDiscount.BASIC;
-import static christmas.domain.constants.EventDiscount.FIXED_MONEY;
+import static christmas.domain.constants.EventDiscount.CHRISTMAS_OR_SPECIAL;
+import static christmas.domain.constants.EventDiscount.WEEK_OR_WEEKEND;
 import static christmas.domain.constants.EventDiscount.GIFT_MONEY;
 import static christmas.domain.constants.EventDiscount.ZERO;
 import static christmas.domain.constants.EventName.CHRISTMAS;
@@ -55,7 +55,7 @@ public class EventService {
     private EventDetail christmasEvent() {
         Map<String, Integer> christmasEvent = new HashMap<>();
         String eventName = CHRISTMAS.getEventName();
-        int discount = BASIC.getDiscountMoney();
+        int discount = CHRISTMAS_OR_SPECIAL.getDiscountMoney();
         int eventDiscount = user.checkChristmasEvent(discount);
 
         if (!user.checkChristmasDate()) {
@@ -71,7 +71,7 @@ public class EventService {
         Map<String, Integer> weekEvent = new HashMap<>();
 
         String eventName = WEEK.getEventName();
-        int discount = FIXED_MONEY.getDiscountMoney();
+        int discount = WEEK_OR_WEEKEND.getDiscountMoney();
         int desertCount = foodOrder.checkWeekEventDiscount();
 
         if (desertCount == ZERO.getDiscountMoney() || !user.checkWeekDate()) {
@@ -85,7 +85,7 @@ public class EventService {
     private EventDetail weekendEvent() {
         Map<String, Integer> weekendEvent = new HashMap<>();
         String eventName = WEEKEND.getEventName();
-        int discount = FIXED_MONEY.getDiscountMoney();
+        int discount = WEEK_OR_WEEKEND.getDiscountMoney();
         int mainCount = foodOrder.checkWeekendDiscount();
 
         if (mainCount == ZERO.getDiscountMoney() || !user.checkWeekendDate()) {
@@ -99,7 +99,7 @@ public class EventService {
     private EventDetail specialEvent() {
         Map<String, Integer> specialEvent = new HashMap<>();
         String eventName = SPECIAL.getEventName();
-        int discount = BASIC.getDiscountMoney();
+        int discount = CHRISTMAS_OR_SPECIAL.getDiscountMoney();
 
         if (!user.checkSpecialDate()) {
             specialEvent.put(NOTING.getEventName(), ZERO.getDiscountMoney());
